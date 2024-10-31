@@ -143,8 +143,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'ChatScreen': const ChatScreenWidget(),
       'HistoryScreen': const HistoryScreenWidget(),
-      'SettingScreen': const SettingScreenWidget(),
       'Voice': const VoiceWidget(),
+      'SettingScreen': const SettingScreenWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -189,18 +189,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.settings_outlined,
-              size: 20.0,
-            ),
-            activeIcon: Icon(
-              Icons.settings_sharp,
-              size: 24.0,
-            ),
-            label: 'Setting',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.volume_up,
               size: 20.0,
             ),
@@ -209,6 +197,18 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Talk',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings_outlined,
+              size: 20.0,
+            ),
+            activeIcon: Icon(
+              Icons.settings_sharp,
+              size: 24.0,
+            ),
+            label: 'Setting',
             tooltip: '',
           )
         ],

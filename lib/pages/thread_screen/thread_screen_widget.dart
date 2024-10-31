@@ -170,8 +170,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                           child: FlutterFlowIconButton(
                             buttonSize: 44.0,
                             icon: Icon(
-                              Icons.close_rounded,
-                              color: FlutterFlowTheme.of(context).info,
+                              Icons.work_history_sharp,
+                              color: FlutterFlowTheme.of(context).tertiary,
                               size: 24.0,
                             ),
                             onPressed: () async {
@@ -180,12 +180,14 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                           ),
                         ),
                         Text(
-                          'Thread',
+                          'Chat History',
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineMediumFamily,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                fontSize: 18.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

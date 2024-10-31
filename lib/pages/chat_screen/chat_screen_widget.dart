@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chat_screen_model.dart';
@@ -63,18 +64,21 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                 updateCallback: () => safeSetState(() {}),
                 child: const PageBgWidget(),
               ),
-            Align(
-              alignment: const AlignmentDirectional(1.0, -0.3),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 55.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/Screenshot_from_2024-10-21_22-30-02-removebg-preview.png',
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 345.0,
-                    fit: BoxFit.contain,
-                    alignment: const Alignment(1.0, 0.0),
+            Opacity(
+              opacity: 0.5,
+              child: Align(
+                alignment: const AlignmentDirectional(1.0, -0.3),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 55.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/Screenshot_from_2024-10-21_22-30-02-removebg-preview.png',
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      fit: BoxFit.contain,
+                      alignment: const Alignment(1.0, 0.0),
+                    ),
                   ),
                 ),
               ),
@@ -82,7 +86,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
             Align(
               alignment: const AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 12.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -118,323 +122,31 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                                 .headlineMediumFamily),
                                   ),
                             ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('Chattts');
-                              },
-                              child: Icon(
-                                Icons.volume_up_outlined,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                size: 32.0,
-                              ),
+                            FaIcon(
+                              FontAwesomeIcons.folder,
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              size: 24.0,
                             ),
                           ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(16.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Spacer(flex: 4),
-                            const Spacer(flex: 3),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Builder(
-                                        builder: (context) {
-                                          final question =
-                                              FFAppConstants.questions.toList();
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question':
-                                                          serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: EdgeInsets.all(
-                                                        valueOrDefault<double>(
-                                                      functions.getVerticalSize(
-                                                          MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height,
-                                                          7.0),
-                                                      0.0,
-                                                    )),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                      Builder(
-                                        builder: (context) {
-                                          final question = FFAppConstants
-                                              .questions2
-                                              .toList();
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question':
-                                                          serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(5.0),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                      Builder(
-                                        builder: (context) {
-                                          final question = FFAppConstants
-                                              .questions3
-                                              .toList();
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question':
-                                                          serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(5.0),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Spacer(flex: 2),
+                            Spacer(flex: 4),
+                            Spacer(flex: 3),
                           ],
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 6.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,

@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/page_bg_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -482,12 +483,19 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                     return;
                                   }
 
+                                  await UsersRecord.collection
+                                      .doc(user.uid)
+                                      .update(createUsersRecordData(
+                                        photoUrl:
+                                            'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
+                                      ));
+
                                   context.pushNamedAuth(
                                       'ChatScreen', context.mounted);
                                 },
                                 text: 'Register',
                                 options: FFButtonOptions(
-                                  width: 172.0,
+                                  width: 206.0,
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
@@ -592,7 +600,13 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                       return;
                                     }
 
-                                    context.goNamedAuth(
+                                    await currentUserReference!
+                                        .update(createUsersRecordData(
+                                      photoUrl:
+                                          'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
+                                    ));
+
+                                    context.pushNamedAuth(
                                         'ChatScreen', context.mounted);
                                   },
                                 ),
@@ -618,7 +632,13 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                       return;
                                     }
 
-                                    context.goNamedAuth(
+                                    await currentUserReference!
+                                        .update(createUsersRecordData(
+                                      photoUrl:
+                                          'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
+                                    ));
+
+                                    context.pushNamedAuth(
                                         'ChatScreen', context.mounted);
                                   },
                                 ),

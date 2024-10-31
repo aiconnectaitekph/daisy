@@ -1,14 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/page_bg_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +21,10 @@ class ChatttsWidget extends StatefulWidget {
   State<ChatttsWidget> createState() => _ChatttsWidgetState();
 }
 
-class _ChatttsWidgetState extends State<ChatttsWidget>
-    with TickerProviderStateMixin {
+class _ChatttsWidgetState extends State<ChatttsWidget> {
   late ChatttsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -44,22 +39,6 @@ class _ChatttsWidgetState extends State<ChatttsWidget>
           createHistoryRecordData(), historyRecordReference);
       FFAppState().historyReference = _model.historyRef?.reference;
       safeSetState(() {});
-    });
-
-    animationsMap.addAll({
-      'iconOnPageLoadAnimation': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
     });
   }
 
@@ -130,8 +109,7 @@ class _ChatttsWidgetState extends State<ChatttsWidget>
                               FontAwesomeIcons.connectdevelop,
                               color: FlutterFlowTheme.of(context).tertiary,
                               size: 24.0,
-                            ).animateOnPageLoad(
-                                animationsMap['iconOnPageLoadAnimation']!),
+                            ),
                           ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),

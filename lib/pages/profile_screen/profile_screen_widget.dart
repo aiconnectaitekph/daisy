@@ -11,7 +11,6 @@ import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'profile_screen_model.dart';
 export 'profile_screen_model.dart';
 
@@ -154,18 +153,16 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                             useSafeArea: true,
                                             context: context,
                                             builder: (context) {
-                                              return WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () =>
-                                                      FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        const SelectImageOptionWidget(),
-                                                  ),
+                                              return GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      const SelectImageOptionWidget(),
                                                 ),
                                               );
                                             },
@@ -215,18 +212,16 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                           useSafeArea: true,
                                           context: context,
                                           builder: (context) {
-                                            return WebViewAware(
-                                              child: GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child:
-                                                      const SelectImageOptionWidget(),
-                                                ),
+                                            return GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    const SelectImageOptionWidget(),
                                               ),
                                             );
                                           },
