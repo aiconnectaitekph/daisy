@@ -37,7 +37,7 @@ class EmilioAiAPICall {
       headers: {
         'Content-Type': 'application/json',
         'Authorization':
-            'Bearer 3066136e648dcd681bc7e18824ef95c4b77945e3eb07548c935dac913094db44',
+            'Bearer ef59ffaa887ba258b4945004a613beb671bf6bf4a3e3a18e2966e3064694581a',
       },
       params: {},
       body: ffApiRequestBody,
@@ -56,6 +56,41 @@ class EmilioAiAPICall {
         r'''$.prompt''',
         true,
       ) as List?;
+}
+
+class TtsCall {
+  static Future<ApiCallResponse> call({
+    String? voiceId = 'joe-biden',
+    String? model = 'ar-diff-50k',
+    String? text = 'Hello tell me a secret',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "text": "$text",
+  "voice_id": "$voiceId",
+  "params": {
+    "model": "$model"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'TTS',
+      apiUrl: 'https://api.neets.ai/v1/tts',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer c0d9aeeef6f14e98ad46c8d23e24535b',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

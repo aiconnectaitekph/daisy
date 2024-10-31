@@ -13,3 +13,4 @@ export '/pages/thread_screen/thread_screen_widget.dart' show ThreadScreenWidget;
 export '/pages/setting_screen/setting_screen_widget.dart'
     show SettingScreenWidget;
 export '/pages/voice/voice_widget.dart' show VoiceWidget;
+export '/pages/chattts/chattts_widget.dart' show ChatttsWidget;

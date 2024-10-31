@@ -230,6 +230,7 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                         chatItemsIndex,
                                       ),
                                       updateCallback: () => safeSetState(() {}),
+                                      updateOnChange: true,
                                       child: ChatItemViewWidget(
                                         key: Key(
                                           'Keycvx_${widget.collectionId!.toString()}',

@@ -149,6 +149,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/voice',
           builder: (context, params) =>
               params.isEmpty ? const NavBarPage(initialPage: 'Voice') : const VoiceWidget(),
+        ),
+        FFRoute(
+          name: 'Chattts',
+          path: '/chattts',
+          builder: (context, params) => const ChatttsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

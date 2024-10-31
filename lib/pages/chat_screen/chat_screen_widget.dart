@@ -20,6 +20,7 @@ class ChatScreenWidget extends StatefulWidget {
 
 class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   late ChatScreenModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -41,6 +42,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   @override
   void dispose() {
     _model.dispose();
+
     super.dispose();
   }
 
@@ -88,6 +90,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                     Container(
                       width: double.infinity,
                       height: 56.0,
+                      decoration: const BoxDecoration(),
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -115,10 +118,19 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                                 .headlineMediumFamily),
                                   ),
                             ),
-                            Icon(
-                              Icons.volume_up_outlined,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              size: 32.0,
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('Chattts');
+                              },
+                              child: Icon(
+                                Icons.volume_up_outlined,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                size: 32.0,
+                              ),
                             ),
                           ].divide(const SizedBox(width: 16.0)),
                         ),
@@ -140,41 +152,22 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                 children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Builder(
                                         builder: (context) {
-                                          final question = FFAppConstants.questions.toList();
+                                          final question =
+                                              FFAppConstants.questions.toList();
+
                                           return Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            children: List.generate(question.length,
-                                                (questionIndex) {
-                                              final questionItem = question[questionIndex];
+                                            children:
+                                                List.generate(question.length,
+                                                    (questionIndex) {
+                                              final questionItem =
+                                                  question[questionIndex];
                                               return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor: Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question': serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId': serializeParam(
-                                                        getCurrentTimestamp.millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey: const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType: PageTransitionType.fade,
-                                                      ),
-                                                    },
-                                                  );return InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
                                                 hoverColor: Colors.transparent,
@@ -381,15 +374,16 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                                       kTransitionInfoKey:
                                                           const TransitionInfo(
                                                         hasTransition: true,
-                                                        transitionType:PageTransitionType
+                                                        transitionType:
+                                                            PageTransitionType
                                                                 .fade,
                                                       ),
                                                     },
                                                   );
                                                 },
                                                 child: Card(
-                                                  clipBehavior:
-                                                      Clip.antiAliasWithSaveLayer,
+                                                  clipBehavior: Clip
+                                                      .antiAliasWithSaveLayer,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .alternate,
@@ -439,8 +433,8 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          16.0, 0.0, 16.0, 16.0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,

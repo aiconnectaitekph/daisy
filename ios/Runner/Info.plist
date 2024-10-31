@@ -58,7 +58,8 @@
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>NSMicrophoneUsageDescription</key>
-    <string>In order for the STT to work as recorder, this app requires permission to access the microphone.</string>
+    <string>This app requires permissions to record audio.</string>
+
 
 
 	<key>UILaunchStoryboardName</key>
