@@ -20,7 +20,6 @@ class ChatScreenWidget extends StatefulWidget {
 
 class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   late ChatScreenModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -42,7 +41,6 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -90,7 +88,6 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                     Container(
                       width: double.infinity,
                       height: 56.0,
-                      decoration: const BoxDecoration(),
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -143,365 +140,38 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                 children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Builder(
                                         builder: (context) {
-                                          final question =
-                                              FFAppConstants.questions.toList();
-
+                                          final question = FFAppConstants.questions.toList();
                                           return Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
+                                            children: List.generate(question.length,
+                                                (questionIndex) {
+                                              final questionItem = question[questionIndex];
                                               return InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
                                                 hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
+                                                highlightColor: Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
                                                     'ThreadScreen',
                                                     queryParameters: {
-                                                      'question':
-                                                          serializeParam(
+                                                      'question': serializeParam(
                                                         questionItem,
                                                         ParamType.String,
                                                       ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
+                                                      'collectionId': serializeParam(
+                                                        getCurrentTimestamp.millisecondsSinceEpoch,
                                                         ParamType.int,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                      kTransitionInfoKey: const TransitionInfo(
                                                         hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
+                                                        transitionType: PageTransitionType.fade,
                                                       ),
                                                     },
                                                   );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: EdgeInsets.all(
-                                                        valueOrDefault<double>(
-                                                      functions.getVerticalSize(
-                                                          MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height,
-                                                          7.0),
-                                                      0.0,
-                                                    )),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                      Builder(
-                                        builder: (context) {
-                                          final question = FFAppConstants
-                                              .questions2
-                                              .toList();
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question':
-                                                          serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(5.0),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                      Builder(
-                                        builder: (context) {
-                                          final question = FFAppConstants
-                                              .questions3
-                                              .toList();
-
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children:
-                                                List.generate(question.length,
-                                                    (questionIndex) {
-                                              final questionItem =
-                                                  question[questionIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                    'ThreadScreen',
-                                                    queryParameters: {
-                                                      'question':
-                                                          serializeParam(
-                                                        questionItem,
-                                                        ParamType.String,
-                                                      ),
-                                                      'collectionId':
-                                                          serializeParam(
-                                                        getCurrentTimestamp
-                                                            .millisecondsSinceEpoch,
-                                                        ParamType.int,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Card(
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  elevation: 4.0,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(5.0),
-                                                    child: Text(
-                                                      questionItem,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Spacer(flex: 2),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'ThreadScreen',
-                            queryParameters: {
-                              'collectionId': serializeParam(
-                                getCurrentTimestamp.millisecondsSinceEpoch,
-                                ParamType.int,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                              ),
-                            },
-                          );
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                valueOrDefault<double>(
-                                  functions.getHorizontalSize(
-                                      MediaQuery.sizeOf(context).width, 22.0),
-                                  0.0,
-                                ),
-                                valueOrDefault<double>(
-                                  functions.getVerticalSize(
-                                      MediaQuery.sizeOf(context).height, 14.0),
-                                  0.0,
-                                ),
-                                0.0,
-                                valueOrDefault<double>(
-                                  functions.getVerticalSize(
-                                      MediaQuery.sizeOf(context).height, 14.0),
-                                  0.0,
-                                )),
-                            child: Text(
-                              'Ask anything about medicine...',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
