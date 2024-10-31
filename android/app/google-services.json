@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "225362605902",
+    "firebase_url": "https://daisy-n7g20a-default-rtdb.firebaseio.com",
+    "project_id": "daisy-n7g20a",
+    "storage_bucket": "daisy-n7g20a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225362605902:android:381b9800c0ffdfccc3d01f",
+        "android_client_info": {
+          "package_name": "com.daisymedic.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225362605902-0cvgjohv7004rlosshhsca3aqsr3bj5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.daisymedic.chat",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "225362605902-1rkgajfsd2p4kq28teljjsv560e6janj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFzPkY8CQUL_5knnr1JjXpqP51OhPnOZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225362605902-1rkgajfsd2p4kq28teljjsv560e6janj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "225362605902-msujdh60q5ufnd57m7k9hj1t9qq693ij.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.daisymedic.chat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
