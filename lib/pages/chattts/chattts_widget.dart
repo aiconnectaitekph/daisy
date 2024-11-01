@@ -31,12 +31,17 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
     super.initState();
     _model = createModel(context, () => ChatttsModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Chattts'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CHATTTS_PAGE_Chattts_ON_INIT_STATE');
+      logFirebaseEvent('Chattts_backend_call');
+
       var historyRecordReference = HistoryRecord.collection.doc(currentUserUid);
       await historyRecordReference.set(createHistoryRecordData());
       _model.historyRef = HistoryRecord.getDocumentFromData(
           createHistoryRecordData(), historyRecordReference);
+      logFirebaseEvent('Chattts_update_app_state');
       FFAppState().historyReference = _model.historyRef?.reference;
       safeSetState(() {});
     });
@@ -152,6 +157,11 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'CHATTTS_PAGE_Card_njoxf3eq_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Card_navigate_to');
+
                                                   context.pushNamed(
                                                     'ThreadScreen',
                                                     queryParameters: {
@@ -244,6 +254,10 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'CHATTTS_PAGE_Container_xdg8k9bp_ON_TAP');
+                          logFirebaseEvent('Container_navigate_to');
+
                           context.pushNamed(
                             'ThreadScreen',
                             queryParameters: {
@@ -358,6 +372,10 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CHATTTS_PAGE_Icon_igbbr64z_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Icon_start_audio_recording');
                                                       await startAudioRecording(
                                                         context,
                                                         audioRecorder: _model
@@ -365,6 +383,8 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                                                             AudioRecorder(),
                                                       );
 
+                                                      logFirebaseEvent(
+                                                          'Icon_update_app_state');
                                                       FFAppState().recording =
                                                           FFAppState()
                                                               .recording;
@@ -407,6 +427,10 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHATTTS_PAGE_Image_gtxen4j5_ON_TAP');
+                                      logFirebaseEvent(
+                                          'Image_stop_audio_recording');
                                       await stopAudioRecording(
                                         audioRecorder: _model.audioRecorder,
                                         audioName: 'recordedFileBytes.mp3',
@@ -418,9 +442,12 @@ class _ChatttsWidgetState extends State<ChatttsWidget> {
                                         },
                                       );
 
+                                      logFirebaseEvent(
+                                          'Image_update_app_state');
                                       FFAppState().recording =
                                           !FFAppState().recording;
                                       safeSetState(() {});
+                                      logFirebaseEvent('Image_custom_action');
                                       await actions.createTTS();
 
                                       safeSetState(() {});

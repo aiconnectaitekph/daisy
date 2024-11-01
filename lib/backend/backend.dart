@@ -8,6 +8,7 @@ import 'schema/util/firestore_util.dart';
 import 'schema/users_record.dart';
 import 'schema/history_record.dart';
 import 'schema/history_items_record.dart';
+import 'schema/ttsresult_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -19,6 +20,7 @@ export 'schema/util/schema_util.dart';
 export 'schema/users_record.dart';
 export 'schema/history_record.dart';
 export 'schema/history_items_record.dart';
+export 'schema/ttsresult_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -129,6 +131,43 @@ Future<List<HistoryItemsRecord>> queryHistoryItemsRecordOnce({
     queryCollectionOnce(
       HistoryItemsRecord.collection(parent),
       HistoryItemsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query TtsresultRecords (as a Stream and as a Future).
+Future<int> queryTtsresultRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      TtsresultRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<TtsresultRecord>> queryTtsresultRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      TtsresultRecord.collection,
+      TtsresultRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<TtsresultRecord>> queryTtsresultRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      TtsresultRecord.collection,
+      TtsresultRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

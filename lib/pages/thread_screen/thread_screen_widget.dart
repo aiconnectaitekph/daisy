@@ -41,14 +41,19 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
     super.initState();
     _model = createModel(context, () => ThreadScreenModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ThreadScreen'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('THREAD_SCREEN_ThreadScreen_ON_INIT_STATE');
       if (widget.question != null && widget.question != '') {
+        logFirebaseEvent('ThreadScreen_update_page_state');
         _model.isLoading = true;
         _model.addToChatData(ChatModelStruct(
           question: widget.question,
         ));
         safeSetState(() {});
+        logFirebaseEvent('ThreadScreen_backend_call');
         _model.initResponse = await EmilioAiAPICall.call(
           apiToken: valueOrDefault(currentUserDocument?.apiKey, ''),
           content: widget.question,
@@ -60,11 +65,14 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
         );
 
         if ((_model.initResponse?.succeeded ?? true)) {
+          logFirebaseEvent('ThreadScreen_backend_call');
+
           var historyRecordReference =
               HistoryRecord.collection.doc(currentUserUid);
           await historyRecordReference.set(createHistoryRecordData());
           _model.initHistoryData = HistoryRecord.getDocumentFromData(
               createHistoryRecordData(), historyRecordReference);
+          logFirebaseEvent('ThreadScreen_update_page_state');
           _model.updateChatDataAtIndex(
             functions.setLastIndex(_model.chatData.toList(), 1),
             (_) => ChatModelStruct(
@@ -83,6 +91,7 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                   .content,
             ),
           );
+          logFirebaseEvent('ThreadScreen_backend_call');
 
           await HistoryItemsRecord.createDoc(
             _model.initHistoryData!.reference,
@@ -100,6 +109,7 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
             ),
           });
         } else {
+          logFirebaseEvent('ThreadScreen_show_snack_bar');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -112,15 +122,18 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondary,
             ),
           );
+          logFirebaseEvent('ThreadScreen_update_page_state');
           _model.isLoading = false;
           _model.removeAtIndexFromChatData(
               functions.setLastIndex(_model.chatData.toList(), 1));
           safeSetState(() {});
         }
 
+        logFirebaseEvent('ThreadScreen_update_page_state');
         _model.isLoading = false;
         safeSetState(() {});
       } else {
+        logFirebaseEvent('ThreadScreen_update_page_state');
         _model.chatData = widget.thread!.data.toList().cast<ChatModelStruct>();
         safeSetState(() {});
       }
@@ -175,6 +188,9 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'THREAD_SCREEN_work_history_sharp_ICN_ON_');
+                              logFirebaseEvent('IconButton_navigate_back');
                               context.safePop();
                             },
                           ),
@@ -272,6 +288,10 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                         '_model.promptTextController',
                                         const Duration(milliseconds: 1),
                                         () async {
+                                          logFirebaseEvent(
+                                              'THREAD_SCREEN_prompt_ON_TEXTFIELD_CHANGE');
+                                          logFirebaseEvent(
+                                              'prompt_update_page_state');
                                           _model.hasValue =
                                               functions.checkValue(_model
                                                   .promptTextController.text);
@@ -377,8 +397,12 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              logFirebaseEvent(
+                                                  'THREAD_SCREEN_PAGE_Icon_7zamd2l0_ON_TAP');
                                               if (functions.checkValue(_model
                                                   .promptTextController.text)) {
+                                                logFirebaseEvent(
+                                                    'Icon_update_page_state');
                                                 _model.isLoading = true;
                                                 _model.addToChatData(
                                                     ChatModelStruct(
@@ -387,6 +411,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                       .trim(),
                                                 ));
                                                 safeSetState(() {});
+                                                logFirebaseEvent(
+                                                    'Icon_backend_call');
                                                 _model.response =
                                                     await EmilioAiAPICall.call(
                                                   apiToken: valueOrDefault(
@@ -405,6 +431,9 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                 if ((_model
                                                         .response?.succeeded ??
                                                     true)) {
+                                                  logFirebaseEvent(
+                                                      'Icon_backend_call');
+
                                                   var historyRecordReference =
                                                       HistoryRecord.collection
                                                           .doc(currentUserUid);
@@ -414,6 +443,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                       .getDocumentFromData(
                                                           createHistoryRecordData(),
                                                           historyRecordReference);
+                                                  logFirebaseEvent(
+                                                      'Icon_update_page_state');
                                                   _model.updateChatDataAtIndex(
                                                     functions.setLastIndex(
                                                         _model.chatData
@@ -447,6 +478,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                           .content,
                                                     ),
                                                   );
+                                                  logFirebaseEvent(
+                                                      'Icon_backend_call');
 
                                                   await HistoryItemsRecord
                                                       .createDoc(
@@ -468,11 +501,15 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                       },
                                                     ),
                                                   });
+                                                  logFirebaseEvent(
+                                                      'Icon_clear_text_fields_pin_codes');
                                                   safeSetState(() {
                                                     _model.promptTextController
                                                         ?.clear();
                                                   });
                                                 } else {
+                                                  logFirebaseEvent(
+                                                      'Icon_show_snack_bar');
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
                                                     SnackBar(
@@ -492,6 +529,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                               .secondary,
                                                     ),
                                                   );
+                                                  logFirebaseEvent(
+                                                      'Icon_update_page_state');
                                                   _model.isLoading = false;
                                                   _model
                                                       .removeAtIndexFromChatData(
@@ -504,6 +543,8 @@ class _ThreadScreenWidgetState extends State<ThreadScreenWidget> {
                                                   safeSetState(() {});
                                                 }
 
+                                                logFirebaseEvent(
+                                                    'Icon_update_page_state');
                                                 _model.isLoading = false;
                                                 safeSetState(() {});
                                               }

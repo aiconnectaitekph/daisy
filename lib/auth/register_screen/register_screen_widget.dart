@@ -28,6 +28,8 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
     super.initState();
     _model = createModel(context, () => RegisterScreenModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'RegisterScreen'});
     _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
 
@@ -454,11 +456,15 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'REGISTER_SCREEN_PAGE_REGISTER_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_validate_form');
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
                                     return;
                                   }
+                                  logFirebaseEvent('Button_auth');
                                   GoRouter.of(context).prepareAuthEvent();
                                   if (_model.passwordTextController.text !=
                                       _model
@@ -489,6 +495,8 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                         photoUrl:
                                             'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
                                       ));
+
+                                  logFirebaseEvent('Button_navigate_to');
 
                                   context.pushNamedAuth(
                                       'ChatScreen', context.mounted);
@@ -593,18 +601,23 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                     size: 20.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'REGISTER_SCREEN_PAGE_google_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     final user = await authManager
                                         .signInWithGoogle(context);
                                     if (user == null) {
                                       return;
                                     }
+                                    logFirebaseEvent('IconButton_backend_call');
 
                                     await currentUserReference!
                                         .update(createUsersRecordData(
                                       photoUrl:
                                           'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
                                     ));
+                                    logFirebaseEvent('IconButton_navigate_to');
 
                                     context.pushNamedAuth(
                                         'ChatScreen', context.mounted);
@@ -625,18 +638,23 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                                     size: 20.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'REGISTER_SCREEN_PAGE_apple_ICN_ON_TAP');
+                                    logFirebaseEvent('IconButton_auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     final user = await authManager
                                         .signInWithApple(context);
                                     if (user == null) {
                                       return;
                                     }
+                                    logFirebaseEvent('IconButton_backend_call');
 
                                     await currentUserReference!
                                         .update(createUsersRecordData(
                                       photoUrl:
                                           'https://png.pngtree.com/png-clipart/20240615/original/pngtree-female-nurse-avatar-with-a-stethoscope-png-image_15339598.png',
                                     ));
+                                    logFirebaseEvent('IconButton_navigate_to');
 
                                     context.pushNamedAuth(
                                         'ChatScreen', context.mounted);
@@ -668,6 +686,9 @@ class _RegisterScreenWidgetState extends State<RegisterScreenWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'REGISTER_SCREEN_Text_srmtymtc_ON_TAP');
+                        logFirebaseEvent('Text_navigate_back');
                         context.safePop();
                       },
                       child: Text(

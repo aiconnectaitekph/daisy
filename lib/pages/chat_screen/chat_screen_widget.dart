@@ -29,12 +29,17 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
     super.initState();
     _model = createModel(context, () => ChatScreenModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ChatScreen'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CHAT_SCREEN_ChatScreen_ON_INIT_STATE');
+      logFirebaseEvent('ChatScreen_backend_call');
+
       var historyRecordReference = HistoryRecord.collection.doc(currentUserUid);
       await historyRecordReference.set(createHistoryRecordData());
       _model.historyRef = HistoryRecord.getDocumentFromData(
           createHistoryRecordData(), historyRecordReference);
+      logFirebaseEvent('ChatScreen_update_app_state');
       FFAppState().historyReference = _model.historyRef?.reference;
       safeSetState(() {});
     });
@@ -122,10 +127,23 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                                 .headlineMediumFamily),
                                   ),
                             ),
-                            FaIcon(
-                              FontAwesomeIcons.folder,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              size: 24.0,
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'CHAT_SCREEN_PAGE_Icon_yp8v1qzq_ON_TAP');
+                                logFirebaseEvent('Icon_navigate_to');
+
+                                context.pushNamed('HistoryScreen');
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.folder,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                size: 24.0,
+                              ),
                             ),
                           ].divide(const SizedBox(width: 16.0)),
                         ),
@@ -153,6 +171,10 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          logFirebaseEvent(
+                              'CHAT_SCREEN_Container_3i8bphng_ON_TAP');
+                          logFirebaseEvent('Container_navigate_to');
+
                           context.pushNamed(
                             'ThreadScreen',
                             queryParameters: {

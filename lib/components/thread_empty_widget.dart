@@ -87,6 +87,9 @@ class _ThreadEmptyWidgetState extends State<ThreadEmptyWidget> {
               alignment: const AlignmentDirectional(0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('THREAD_EMPTY_CREATE_A_THREAD_BTN_ON_TAP');
+                  logFirebaseEvent('Button_navigate_to');
+
                   context.pushNamed(
                     'ThreadScreen',
                     queryParameters: {

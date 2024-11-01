@@ -31,6 +31,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
     super.initState();
     _model = createModel(context, () => ProfileScreenModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ProfileScreen'});
     _model.usernameTextController ??=
         TextEditingController(text: currentUserDisplayName);
     _model.usernameFocusNode ??= FocusNode();
@@ -91,6 +93,9 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'PROFILE_SCREEN_arrow_back_ios_new_ICN_ON');
+                              logFirebaseEvent('IconButton_navigate_back');
                               context.safePop();
                             },
                           ),
@@ -146,6 +151,10 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PROFILE_SCREEN_PAGE_file_image_ON_TAP');
+                                          logFirebaseEvent(
+                                              'file_image_bottom_sheet');
                                           await showModalBottomSheet(
                                             isScrollControlled: true,
                                             backgroundColor: Colors.transparent,
@@ -171,6 +180,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
 
                                           if (functions.checkImageValue(
                                               _model.imageDaata)) {
+                                            logFirebaseEvent(
+                                                'file_image_update_page_state');
                                             _model.selectedImage =
                                                 _model.imageDaata;
                                             safeSetState(() {});
@@ -205,6 +216,10 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'PROFILE_SCREEN_PAGE_network_image_ON_TAP');
+                                        logFirebaseEvent(
+                                            'network_image_bottom_sheet');
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
                                           backgroundColor: Colors.transparent,
@@ -230,6 +245,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
 
                                         if (functions.checkImageValue(
                                             _model.imageData)) {
+                                          logFirebaseEvent(
+                                              'network_image_update_page_state');
                                           _model.selectedImage =
                                               _model.imageData;
                                           safeSetState(() {});
@@ -540,6 +557,9 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                 child: AuthUserStreamWidget(
                                   builder: (context) => FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'PROFILE_SCREEN_SAVE_PROFILE_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_validate_form');
                                       if (_model.formKey.currentState == null ||
                                           !_model.formKey.currentState!
                                               .validate()) {
@@ -547,6 +567,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                       }
                                       if (functions.checkImageValue(
                                           _model.selectedImage)) {
+                                        logFirebaseEvent(
+                                            'Button_upload_file_to_firebase');
                                         {
                                           safeSetState(() =>
                                               _model.isDataUploading = true);
@@ -593,6 +615,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                           }
                                         }
 
+                                        logFirebaseEvent('Button_backend_call');
+
                                         await currentUserReference!
                                             .update(createUsersRecordData(
                                           displayName: _model
@@ -602,6 +626,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                           photoUrl: _model.uploadedFileUrl,
                                         ));
                                       } else {
+                                        logFirebaseEvent('Button_backend_call');
+
                                         await currentUserReference!
                                             .update(createUsersRecordData(
                                           displayName: _model
@@ -611,6 +637,7 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                         ));
                                       }
 
+                                      logFirebaseEvent('Button_show_snack_bar');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(

@@ -68,6 +68,8 @@ class _SelectImageOptionWidgetState extends State<SelectImageOptionWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                logFirebaseEvent('SELECT_IMAGE_OPTION_Row_6baoe8am_ON_TAP');
+                logFirebaseEvent('Row_store_media_for_upload');
                 final selectedMedia = await selectMedia(
                   mediaSource: MediaSource.photoGallery,
                   multiImage: false,
@@ -101,6 +103,7 @@ class _SelectImageOptionWidgetState extends State<SelectImageOptionWidget> {
                   }
                 }
 
+                logFirebaseEvent('Row_bottom_sheet');
                 Navigator.pop(context, _model.uploadedLocalFile1);
               },
               child: Row(
@@ -165,6 +168,8 @@ class _SelectImageOptionWidgetState extends State<SelectImageOptionWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                logFirebaseEvent('SELECT_IMAGE_OPTION_Row_pi09osdm_ON_TAP');
+                logFirebaseEvent('Row_store_media_for_upload');
                 final selectedMedia = await selectMedia(
                   multiImage: false,
                 );
@@ -197,6 +202,7 @@ class _SelectImageOptionWidgetState extends State<SelectImageOptionWidget> {
                   }
                 }
 
+                logFirebaseEvent('Row_bottom_sheet');
                 Navigator.pop(context, _model.uploadedLocalFile2);
               },
               child: Row(

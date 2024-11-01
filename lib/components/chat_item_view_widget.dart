@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -182,6 +183,9 @@ class _ChatItemViewWidgetState extends State<ChatItemViewWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHAT_ITEM_VIEW_COMP_Icon_rl6u40rf_ON_TAP');
+                                      logFirebaseEvent('Icon_share');
                                       await Share.share(
                                         '${widget.chat?.question}${widget.chat?.answer}',
                                         sharePositionOrigin:
@@ -196,20 +200,65 @@ class _ChatItemViewWidgetState extends State<ChatItemViewWidget>
                                     ),
                                   ),
                                 ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await Clipboard.setData(ClipboardData(
-                                      text: widget.chat!.answer));
-                                },
-                                child: FaIcon(
-                                  FontAwesomeIcons.copy,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'CHAT_ITEM_VIEW_COMP_Icon_zphlmp1t_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Icon_copy_to_clipboard');
+                                            await Clipboard.setData(
+                                                ClipboardData(
+                                                    text:
+                                                        widget.chat!.answer));
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.copy,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          30.0, 0.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'CHAT_ITEM_VIEW_COMP_Icon_17xja7cc_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_custom_action');
+                                          await actions.createTTS();
+                                          logFirebaseEvent(
+                                              'Icon_custom_action');
+                                          await actions.permissionAutoplay();
+                                        },
+                                        child: Icon(
+                                          Icons.volume_up,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ].divide(const SizedBox(width: 15.0)),

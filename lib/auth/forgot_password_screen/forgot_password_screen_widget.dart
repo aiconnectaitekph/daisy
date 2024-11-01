@@ -29,6 +29,8 @@ class _ForgotPasswordScreenWidgetState
     super.initState();
     _model = createModel(context, () => ForgotPasswordScreenModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ForgotPasswordScreen'});
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
   }
@@ -77,6 +79,9 @@ class _ForgotPasswordScreenWidgetState
                             size: 20.0,
                           ),
                           onPressed: () async {
+                            logFirebaseEvent(
+                                'FORGOT_PASSWORD_SCREEN_arrow_back_ios_ne');
+                            logFirebaseEvent('IconButton_navigate_back');
                             context.safePop();
                           },
                         ),
@@ -210,10 +215,14 @@ class _ForgotPasswordScreenWidgetState
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'FORGOT_PASSWORD_SCREEN_SEND_LINK_BTN_ON_');
+                                logFirebaseEvent('Button_validate_form');
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
+                                logFirebaseEvent('Button_auth');
                                 if (_model
                                     .emailAddressTextController.text.isEmpty) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -229,6 +238,7 @@ class _ForgotPasswordScreenWidgetState
                                   email: _model.emailAddressTextController.text,
                                   context: context,
                                 );
+                                logFirebaseEvent('Button_navigate_back');
                                 context.safePop();
                               },
                               text: 'Send Link',

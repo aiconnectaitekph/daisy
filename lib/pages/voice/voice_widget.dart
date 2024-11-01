@@ -24,9 +24,13 @@ class _VoiceWidgetState extends State<VoiceWidget> {
     super.initState();
     _model = createModel(context, () => VoiceModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Voice'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VOICE_PAGE_Voice_ON_INIT_STATE');
+      logFirebaseEvent('Voice_custom_action');
       await actions.micpermission();
+      logFirebaseEvent('Voice_custom_action');
       await actions.permissionAutoplay();
     });
   }

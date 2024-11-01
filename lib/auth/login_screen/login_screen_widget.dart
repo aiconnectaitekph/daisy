@@ -28,8 +28,11 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
     super.initState();
     _model = createModel(context, () => LoginScreenModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'LoginScreen'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('LOGIN_SCREEN_LoginScreen_ON_INIT_STATE');
+      logFirebaseEvent('LoginScreen_set_dark_mode_settings');
       setDarkModeSetting(context, ThemeMode.dark);
     });
 
@@ -288,6 +291,10 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                logFirebaseEvent(
+                                    'LOGIN_SCREEN_PAGE_Text_yqr8btcl_ON_TAP');
+                                logFirebaseEvent('Text_navigate_to');
+
                                 context.pushNamed('ForgotPasswordScreen');
                               },
                               child: Text(
@@ -313,12 +320,16 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              logFirebaseEvent(
+                                  'LOGIN_SCREEN_PAGE_LOG_IN_BTN_ON_TAP');
+                              logFirebaseEvent('Button_validate_form');
                               _model.usersauth = true;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 safeSetState(() => _model.usersauth = false);
                                 return;
                               }
+                              logFirebaseEvent('Button_auth');
                               GoRouter.of(context).prepareAuthEvent();
 
                               final user = await authManager.signInWithEmail(
@@ -329,6 +340,8 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                               if (user == null) {
                                 return;
                               }
+
+                              logFirebaseEvent('Button_navigate_to');
 
                               context.pushNamedAuth(
                                   'ChatScreen', context.mounted);
@@ -437,12 +450,16 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                                 size: 20.0,
                               ),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'LOGIN_SCREEN_PAGE_google_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 final user =
                                     await authManager.signInWithGoogle(context);
                                 if (user == null) {
                                   return;
                                 }
+                                logFirebaseEvent('IconButton_navigate_to');
 
                                 context.pushNamedAuth(
                                     'ChatScreen', context.mounted);
@@ -462,6 +479,9 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                                 size: 20.0,
                               ),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'LOGIN_SCREEN_PAGE_apple_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 final user =
                                     await authManager.signInWithApple(context);
@@ -503,6 +523,10 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'LOGIN_SCREEN_PAGE_Text_eqcqlhd0_ON_TAP');
+                              logFirebaseEvent('Text_navigate_to');
+
                               context.pushNamed('RegisterScreen');
                             },
                             child: Text(

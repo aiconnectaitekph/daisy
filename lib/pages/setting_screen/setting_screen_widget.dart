@@ -31,6 +31,9 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingScreenModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'SettingScreen'});
   }
 
   @override
@@ -111,6 +114,10 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'SETTING_SCREEN_PAGE_Row_z1qhhnkp_ON_TAP');
+                              logFirebaseEvent('Row_navigate_to');
+
                               context.pushNamed('ProfileScreen');
                             },
                             child: Row(
@@ -122,6 +129,10 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'SETTING_SCREEN_Container_lzq9ozk1_ON_TAP');
+                                    logFirebaseEvent(
+                                        'Container_upload_media_to_firebase');
                                     final selectedMedia =
                                         await selectMediaWithSourceBottomSheet(
                                       context: context,
@@ -178,10 +189,14 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                                       }
                                     }
 
+                                    logFirebaseEvent('Container_backend_call');
+
                                     await currentUserReference!
                                         .update(createUsersRecordData(
                                       photoUrl: _model.uploadedFileUrl,
                                     ));
+                                    logFirebaseEvent(
+                                        'Container_show_snack_bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -310,6 +325,9 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'SETTING_SCREEN_ListTile_azupyyxz_ON_TAP');
+                            logFirebaseEvent('ListTile_alert_dialog');
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
@@ -327,6 +345,7 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                                 );
                               },
                             );
+                            logFirebaseEvent('ListTile_alert_dialog');
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
@@ -351,9 +370,11 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                                 ) ??
                                 false;
                             if (confirmDialogResponse) {
+                              logFirebaseEvent('ListTile_custom_action');
                               await actions.deleteHistory(
                                 currentUserUid,
                               );
+                              logFirebaseEvent('ListTile_show_snack_bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -726,6 +747,9 @@ class _SettingScreenWidgetState extends State<SettingScreenWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent(
+                            'SETTING_SCREEN_ListTile_17bjshnw_ON_TAP');
+                        logFirebaseEvent('ListTile_auth');
                         GoRouter.of(context).prepareAuthEvent();
                         await authManager.signOut();
                         GoRouter.of(context).clearRedirectLocation();

@@ -59,6 +59,8 @@ class _HistoryItemViewWidgetState extends State<HistoryItemViewWidget> {
                 backgroundColor: FlutterFlowTheme.of(context).error,
                 icon: Icons.delete_rounded,
                 onPressed: (_) async {
+                  logFirebaseEvent('HISTORY_ITEM_VIEW_SlidableActionWidget_t');
+                  logFirebaseEvent('SlidableActionWidget_backend_call');
                   await widget.chatDocument!.delete();
                 },
               ),

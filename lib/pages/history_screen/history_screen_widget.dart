@@ -28,6 +28,9 @@ class _HistoryScreenWidgetState extends State<HistoryScreenWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HistoryScreenModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'HistoryScreen'});
   }
 
   @override
@@ -134,6 +137,11 @@ class _HistoryScreenWidgetState extends State<HistoryScreenWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HISTORY_SCREEN_Container_3zn7ld7p_ON_TAP');
+                                  logFirebaseEvent(
+                                      'HistoryItemView_navigate_to');
+
                                   context.pushNamed(
                                     'ThreadScreen',
                                     queryParameters: {
